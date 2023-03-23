@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ряп устойчивый</title>
+</head>
+<body style="margin: 0;font-size: 20px;background-color: grey">
+<button onclick="console.clear();перевести();" style="background-color: LimeGreen; cursor: pointer; border-radius: 20px; margin-left: 1%;">сохранить</button>
+<input type="file" id="file" style="margin-left: 13%; cursor: pointer;">
+<button id="loading" style="margin-left: 13%; cursor: pointer;">Загрузить код с компьютера</button>
+<textarea id="textarea" cols="50" rows="10" style="width: 98%; border: 0px; color: Olive; margin-left: 1%; background-color: pink;font-size: 20px; font-family: Verdana; outline: none;"></textarea>
+<button id="translate" style="width: 94%; background-color: OrangeRed; text-align: center; cursor: pointer; margin: 3%; font-family: Arial; border-radius: 20px;" onclick="document.getElementById('translate').innerHTML = 'СТОП!';перевести(); if(r==1){r=-r;location.reload()} if((allText.split(cov).length - 1) / 2 == Math.floor(allText.split(cov).length - 1) / 2){document.getElementById('ryp').innerHTML = allText}else{document.getElementById('ryp').innerHTML = allText + '\nalert(sis)'} перевести();r=-r">ПЕРЕВЕСТИ И ЗАПУСТИТЬ!</button>
+<button id="copy" style="width: 94%; background-color: green; text-align: center; cursor: pointer; margin: 3%; font-family: Arial; border-radius: 20px;" onclick="console.clear();перевести();document.getElementById('textarea').value = allText; document.getElementById('textarea').select();document.execCommand('copy');document.getElementById('textarea').value = localStorage.getItem('allText1'); document.getElementById('copy').innerHTML = 'СКОПИРОВАНО';">КОПИРОВАТЬ JS!</button>
+<canvas id="canvas" style="display: block" onclick="принажатиинахолст()"></canvas>
+<script type="text/javascript">
+allText = document.getElementById('textarea').value;
+document.getElementById('textarea').value = localStorage.getItem('allText1');
+allText = document.getElementById('textarea').value;
+var r=-1, cov = '"', sis = "Если ваш код не сработал, то, наверняка причина кроется в незакрытой ковычке", flag = false;
+console.log(allText);
+function changeCode(ryap, js){
+allText = allText.replace(ryap, js);
+}
+перевести();
+
+document.getElementById("loading").addEventListener('click', function(){
+let file = document.getElementById('file').files[0];
+let reader = new FileReader();
+reader.readAsText(file);
+reader.onload = function () {
+allText = reader.result;
+document.getElementById('textarea').value = allText;
+}
+})
+
+document.onkeydown = function (KeyboardEvent) {
+if (KeyboardEvent.key == "Shift"){flag = true}
+if (flag == true && KeyboardEvent.сode == "KeyS"){alert(6);}
+console.clear();
+i = 0;
+перевести();
+document.getElementById('copy').innerHTML = 'КОПИРОВАТЬ JS!';
+}
+
+function перевести() {
+allText = document.getElementById('textarea').value;
+localStorage.setItem('allText1', allText);
+
+changeCode(/html элемент с айди /gi,"document.getElementById(");
+changeCode(/ его html содержание/gi,".innerHTML");
+changeCode(/ получение двухмерного контекста/gi,".getContext('2d')");
+changeCode(/содержание холста/gi,"ctx=document.getElementById('canvas').getContext('2d')");
+changeCode(/нарисовать прямоугольник /gi,"ctx.fillRect(");
+changeCode(/нарисовать прямоугольник/gi,"ctx.fillRect");
+changeCode(/цвет заливки /gi,"ctx.fillStyle=");
+changeCode(/цвет линии /gi,"ctx.strokeStyle=");
+changeCode(/ширина линии /gi,"ctx.lineWidth=");
+changeCode(/высота холста/gi,"document.getElementById('canvas').height");
+changeCode(/ширина холста/gi,"document.getElementById('canvas').width");
+changeCode(/очистить холст/gi,'предыдущийцвет=ctx.fillStyle;ctx.fillStyle="white";ctx.fillRect(0,0,document.getElementById("canvas").width,document.getElementById("canvas").height);ctx.fillStyle=предыдущийцвет');
+changeCode(/высота окна/gi,"window.innerHeight");
+changeCode(/ширина окна/gi,"window.innerWidth");
+changeCode(/рисовка линий/gi,"ctx.beginPath()");
+
+changeCode(/провести линию из точки /gi,"ctx.moveTo(");
+changeCode(/провести линию из точки/gi,"ctx.moveTo");
+
+changeCode(/провести линию в точку /gi,"ctx.lineTo(");
+changeCode(/провести линию в точку/gi,"ctx.lineTo");
+
+changeCode(/завершить рисовку линий/gi,"ctx.stroke()");
+changeCode(/провести линию из первой точки в последнюю/gi,"ctx.closePath()");
+changeCode(/ пикселей/gi,"px");
+changeCode(/заполнить/gi,"ctx.fill()");
+
+changeCode(/интервал/gi,"setInterval");
+changeCode(/повернуть фигуру/gi,"ctx.rotate");
+changeCode(/интервал /gi,"setInterval(");
+changeCode(/повернуть фигуру /gi,"ctx.rotate(");
+
+changeCode(/размер шрифт текста /gi,"ctx.font=");
+
+changeCode(/нарисовать текст /gi,"ctx.fillText(");
+changeCode(/нарисовать текст/gi,"ctx.fillText");
+
+changeCode(/зелено-желтый/gi,'"GreenYellow"');
+changeCode(/лаймовый/gi,'"Lime"');
+changeCode(/светло-зеленый/gi,'"LightGreen"');
+changeCode(/лаймово-зеленый/gi,'"LimeGreen"');
+changeCode(/темно-зеленый/gi,'"DarkGreen"');
+changeCode(/желто-зеленый/gi,'"YellowGreen"');
+changeCode(/темно-оливково-зеленый/gi,'"DarkOliveGreen"');
+changeCode(/водный/gi,'"Aqua"');
+changeCode(/аквамариновый/gi,'"Aquamarine"');
+changeCode(/темно-синий/gi,'"DarkBlue"');
+changeCode(/снежный/gi,'"Snow"');
+changeCode(/азуровый/gi,'"Azure"');
+changeCode(/темно-серый/gi,'"DarkGrey"');
+changeCode(/серебрянный/gi,'"Silver"');
+changeCode(/светло-серый/gi,'"LightGrey"');
+changeCode(/желтый/gi,'"yellow"');
+changeCode(/розовый/gi,'"pink"');
+changeCode(/зеленый/gi,'"green"');
+changeCode(/серый/gi,'"grey"');
+changeCode(/черный/gi,'"black"');
+changeCode(/белый/gi,'"white"');
+changeCode(/синий/gi,'"blue"');
+changeCode(/красный/gi,'"red"');
+changeCode(/оранжевый/gi,'"orange"');
+changeCode(/дьявольский/gi,'"#666"');
+changeCode(/фиолетовый/gi,'"purple"');
+changeCode(/коричневый/gi,'"brown"');
+changeCode(/оливковый/gi,'"Olive"');
+changeCode(/индиго/gi,'"Indigo"');
+changeCode(/золотой/gi,'"Gold"');
+
+changeCode(/тип данных в переменной/gi,"tapeof");
+changeCode(/преобразовать строку в число /gi,"+");
+changeCode(/перенос строки/gi,"n");
+changeCode(/табуляция строки/gi,"t");
+changeCode(/вертикальная табуляция/gi,"v");
+changeCode(/строчная переменная /gi,"string ");
+changeCode(/переменная /gi,"var ");
+changeCode(/постоянная /gi,"const ");
+changeCode(/константа /gi,"const ");
+changeCode(/конст /gi,"const ");
+changeCode(/пост /gi,"const ");
+changeCode(/пер /gi,"let ");
+changeCode(/ равна /gi,"=");
+
+
+
+changeCode(/конвертация в JASON/gi,"JASON.stringifi(");
+changeCode(/конвертация из JASON/gi,"JASON.parce(");
+
+changeCode(/ перебор значений массива с его изменением /gi,".map(");
+changeCode(/ присоединить к массиву /gi,".concat(");
+changeCode(/ присоединить к массиву/gi,".concat");
+changeCode(/ клонировать/gi,".concat()");
+changeCode(/ поиск в массиве /gi,".indexOf(");
+changeCode(/ поиск в массиве/gi,".indexOf");
+changeCode(/ индекс в массиве /gi," in ");
+changeCode(/ в массиве /gi," of ");
+
+changeCode(/конвертировать значения обьекта в массив /gi,"Object.values(");
+changeCode(/преобразовать значения обьекта в массив /gi,"Object.values(");
+changeCode(/конвертировать значения обьекта в массив/gi,"Object.values");
+changeCode(/преобразовать значения обьекта в массив/gi,"Object.values");
+
+changeCode(/конвертировать ключи обьекта в массив /gi,"Object.keys(");
+changeCode(/преобразовать ключи обьекта в массив /gi,"Object.keys(");
+changeCode(/конвертировать ключи обьекта в массив/gi,"Object.keys");
+changeCode(/преобразовать ключи обьекта в массив/gi,"Object.keys");
+
+changeCode(/конвертировать обьект в массив /gi,"Object.entries(");
+changeCode(/преобразовать обьект в массив /gi,"Object.entries(");
+changeCode(/конвертировать обьект в массив/gi,"Object.entries");
+changeCode(/преобразовать обьект в массив/gi,"Object.entries");
+
+changeCode(/ перебор значений массива /gi,".forEach(");
+changeCode(/запись уникальных значений массива /gi,"...new Set(");
+changeCode(/ перебор значений массива с его изменением/gi,".map");
+changeCode(/ перебор значений массива/gi,".forEach");
+changeCode(/запись уникальных значений массива/gi,"...new Set");
+changeCode(/ количество элементов в массиве/gi,".length");
+changeCode(/ удалить последний элемент в массиве/gi,".pop()");
+changeCode(/ последний элемент в массиве/gi,".length-1");
+changeCode(/ отсортировать элементы в массиве /gi,".sort(");
+changeCode(/ сортировать элементы в массиве /gi,".sort(");
+changeCode(/ отсортировать элементы в массиве/gi,".sort");
+changeCode(/ сортировать элементы в массиве/gi,".sort");
+changeCode(/ преобразовать трехмерный массив в двухмерный/gi,".flat()");
+
+
+
+changeCode(/безимянная функция /gi,"function ( ");
+changeCode(/безимянная фун /gi,"function ( ");
+changeCode(/стрелочная функция /gi,"=>");
+changeCode(/СФ /g,"=>");
+changeCode(/функция /gi,"function ");
+changeCode(/фун /gi,"function ");
+changeCode(/не принимает аргументы/gi,"(");
+changeCode(/ принимает аргументы /gi,"(");
+changeCode(/ начало функции/gi,"){");
+changeCode(/ начало цикла/gi,"){");
+changeCode(/начало/gi,"{");
+changeCode(/конец функции/gi,"}");
+changeCode(/конец цикла/gi,"}");
+changeCode(/конец/gi,"}");
+changeCode(/вернуть /gi,'return ');
+
+changeCode(/окно с двумя кнопками /gi,'confirm(');
+changeCode(/окно с двумя кнопками/gi,'confirm');
+changeCode(/окно /gi,'alert(');
+changeCode(/окно/gi,'alert');
+changeCode(/вывод в консоль /gi,'console.log(');
+changeCode(/вывод в консоль/gi,'console.log');
+changeCode(/очистить консоль/gi,'console.clear()');
+
+changeCode(/значение от пользователя /gi,'prompt(');
+changeCode(/ЦЗОП /g,'+prompt(');
+changeCode(/ЗОП /g,'prompt(');
+changeCode(/цифровое значение от пользователя/gi,'+prompt');
+changeCode(/значение от пользователя/gi,'prompt');
+changeCode(/ЦЗОП/g,'+prompt');
+changeCode(/ЗОП/g,'prompt');
+
+changeCode(/математика-/gi,'Math.');
+changeCode(/целое случайное число до /gi,'round(Math.random()*');
+changeCode(/случайное число/gi,'random()');
+changeCode(/число пи/gi,'PI');
+changeCode(/число е/gi,'E');
+changeCode(/округлить /gi,'Math.round(');
+changeCode(/округлить/gi,'Math.round');
+
+changeCode(/запустить цикл если /gi,'while(');
+changeCode(/запустить бесконечный цикл /gi,'while(true){');
+changeCode(/запустить цикл /gi,'for(');
+changeCode(/правда/gi,'true');
+changeCode(/истина/gi,'true');
+changeCode(/ложь/gi,'false');
+changeCode(/пусто/gi,'null');
+changeCode(/не число/gi,'NaN');
+changeCode(/бесконечность/gi,'Infinity');
+changeCode(/нет значения/gi,'undefined');
+changeCode(/большеравно/gi,'>=');
+changeCode(/меньшеравно/gi,'<=');
+changeCode(/больше равно/gi,'>=');
+changeCode(/меньше равно/gi,'<=');
+changeCode(/ больше /gi,'>');
+changeCode(/ меньше /gi,'<');
+changeCode(/ строго равно /gi,'===');
+changeCode(/ строго не равно /gi,"!==");
+changeCode(/ не равно /gi,"!=");
+changeCode(/ равно /gi,"==");
+changeCode(/ и /gi,"&&");
+changeCode(/ или /gi,"||");
+changeCode(/ остаток от деления на /gi,"%");
+changeCode(/ в степени /gi,"**");
+changeCode(/удалить цифры после запятой у /gi,"~~");
+changeCode(/удалить цифры после точки у /gi,"~~");
+
+changeCode(/если это выражение верно то присваеваем это значение /gi,"?");
+changeCode(/если это выражение не верно то присваеваем это значение /gi,":");
+changeCode(/иначе присваеваем это значение /gi,":");
+changeCode(/если значение выражения /gi,"switch(");
+changeCode(/совпадает с /gi,"case ");
+changeCode(/тогда/gi,":");
+changeCode(/выход из ветвистой функции/gi,"break");
+changeCode(/если ни с чем не совпадает /gi,"defolt");
+changeCode(/иначе если/gi,"else if(");
+changeCode(/если /gi,"if(");
+changeCode(/иначе/gi,"else{");
+
+changeCode(/ то/gi,"){");
+
+changeCode(/при нажатии на кнопку /gi,'document.addEventListener("keydown", function (e)');
+changeCode(/код кнопки/gi,'e.keyCode');
+changeCode(/название кнопки/gi,'e.key');
+
+changeCode(/КОМАНДУ/gi,'changeCode(/');
+changeCode(/ ЗАМЕНИТЬ НА /gi,'/gi,"');
+
+changeCode(/дата по стандарту/gi,"new Date().toISOString()");
+
+changeCode(/<кнопка/gi,"<button");
+changeCode(/<!кнопка>/gi,"</button>");
+changeCode(/<контейнер/gi,"<div");
+changeCode(/<!контейнер>/gi,"</div>");
+changeCode(/<ссылка/gi,"<a");
+changeCode(/<!ссылка>/gi,"</a>");
+changeCode(/адрес="/gi,'href="');
+changeCode(/при нажатии на элемент="/gi,'onclick="');
+changeCode(/стиль="/gi,'');
+
+changeCode(/ 	/gi,")");
+changeCode(/;	/gi,"; //");
+changeCode(/ ;/gi,");");
+changeCode(/однострочный коментарий/gi,"//");
+changeCode(/многострочный коментарий/gi,"/*");
+changeCode(/окончание многострочного коментария/gi,"*/");
+
+changeCode(/подключить библиотеку расширенной работы с холстом/gi,`
+/*подключение библиотеки расширенной работы с холстом*/
+ctx=document.getElementById('canvas').getContext('2d');
+function покрасить_весь_холст_в(цветпокраски) {
+предыдущийцвет=ctx.fillStyle;
+ctx.fillStyle=цветпокраски;
+ctx.fillRect(0,0,document.getElementById("canvas").width,document.getElementById("canvas").height);
+ctx.fillStyle=предыдущийцвет;
+}
+function нарисовать_квадрат(у, х, ребро){
+    ctx.fillRect(у, х, ребро, ребро);
+}
+let стандарт=6.666;
+function размеры_холста (ширина, высота){
+    if(ширина==стандарт){
+        document.getElementById('canvas').height = window.innerHeight;
+        document.getElementById('canvas').width = window.innerWidth;
+    }
+    else{
+        document.getElementById('canvas').height = высота;
+        document.getElementById('canvas').width = ширина;
+    }
+}
+/*конец библиотеки. Дальше можете писать свой код!*/
+`);
+changeCode(/подключить библиотеку расширенной математики/gi,`
+function целое_случайное_число(макс, мин){
+return Math.round(Math.random()*(макс-мин))+мин
+}
+`);
+changeCode(/подключить библиотеку расширенной работы с текстом/gi,`
+function записать_в_массив_текст(текст){
+    let массив = []
+    for(символ of текст){
+        массив[массив.length] = символ
+    }
+    return массив
+}
+`);
+console.log('\n'+allText);
+}
+</script>
+<script type="text/javascript" id="ryp"></script>
+</body>
+</html>
